@@ -14,9 +14,9 @@ def submit():
     return render_template("hello.html", name=input_name, age=input_age)
 
 
-@app.route("/query", method=["GET"])
+@app.route("/query", methods=["GET"])
 def get_query_parameter():
-    query_parameter = request.args("q")
+    query_parameter = request.args.get("q")
     return process_query(query_parameter)
 
 
