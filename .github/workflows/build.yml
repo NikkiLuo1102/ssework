@@ -14,8 +14,22 @@ jobs:
         run: pip install flake8
       - name: Run flake8
         run: flake8 api/
-  deploy-to-vercel:
+  unit-tests:
     needs: python-formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Run pytest
+        run: pytest api/        
+  deploy-to-vercel:
+    needs: unit—test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
