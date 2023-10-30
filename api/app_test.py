@@ -28,13 +28,13 @@ def tests_plus():
 
 
 def tests_square_cube():
-    assert process_query("Which of the following numbers is both a \
+    assert process_query("Which of the following numbers is both a\
                          square and a cube: 78, 64, 16, 27, 729?") == "16, 729"
 
 
 def tests_prime():
     assert process_query("Which of the following numbers are primes\
-                         : 7 16 23 42 41 128?") == "7, 23, 41"
+                         : 7, 16, 23, 42, 41, 128?") == "7, 23, 41"
 
 
 def tests_minus():
