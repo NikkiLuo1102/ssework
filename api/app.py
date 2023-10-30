@@ -42,8 +42,7 @@ def process_query(query_parameter):
     pattern_multiplied = r'What is \d+ multiplied by \d+\?$'
     large = r'Which of the following numbers is the largest: (\d+)(, \d+)*\?$'
     pattern_plus = r'What is \d+ plus \d+\?$'
-    cubes = r'Which of the following numbers is both \
-        a square and a cube: (\d+)(, \d+)*\?$'
+    cubes = r'[A-Za-z\s]+ is both a square and a cube: (\d+)(, \d+)*\?$'
     prime = r'Which of the following numbers are primes: (\d+)(, \d+)*\?$'
     pattern_minus = r'What is \d+ minus \d+\?$'
     pattern_num = r'\d+'
