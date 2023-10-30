@@ -1,7 +1,8 @@
-pip install flask
 from flask import Flask, render_template, request
 import re
 import math
+
+
 app = Flask(__name__)
 
 
@@ -44,7 +45,7 @@ def process_query(query_parameter):
     pattern_plus = r'What is \d+ plus \d+\?$'
     pattern_square_cubes = r'Which of the following numbers is both \
         a square and a cube: (\d+)(, \d+)*\?$'
-    pattern_prime = r'Which of the following numbers are primes: (\d+)(, \d+)*\?$'
+    prime = r'Which of the following numbers are primes: (\d+)(, \d+)*\?$'
     pattern_minus = r'What is \d+ minus \d+\?$'
     pattern_num = r'\d+'
 
@@ -81,7 +82,7 @@ def process_query(query_parameter):
         matches = re.findall(pattern_num, query_parameter)
         return str(int(matches[0])-int(matches[1]))
 
-    elif re.match(pattern_prime, query_parameter):
+    elif re.match(prime, query_parameter):
         matches = re.findall(pattern_num, query_parameter)
         res = ""
         for i in matches:
