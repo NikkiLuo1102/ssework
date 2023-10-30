@@ -9,5 +9,33 @@ def test_knows_about_dinosaurs():
 def test_does_not_know_about_asteroids():
     assert process_query("asteroids") == "Unknown"
 
-def tests_knows_about_my_name():
+
+def tests_name():
     assert process_query("What is your name?") == "KFC V50"
+
+
+def tests_multi():
+    assert process_query("What is 2 multiplied by 22?") == "44"
+
+
+def tests_largest():
+    assert process_query("Which of the following numbers is the largest\
+                         : 32, 15, 44?") == "44"
+
+
+def tests_plus():
+    assert process_query("What is 34 plus 12?") == "46"
+
+
+def tests_square_cube():
+    assert process_query("Which of the following numbers is both a \
+                         square and a cube: 78, 64, 16, 27, 729?") == "16, 729"
+
+
+def tests_prime():
+    assert process_query("Which of the following numbers are primes\
+                         : 7 16 23 42 41 128?") == "7, 23, 41"
+
+
+def tests_minus():
+    assert process_query("What is 25 minus 12?") == "13"
