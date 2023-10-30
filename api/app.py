@@ -23,5 +23,7 @@ def get_query_parameter():
 def process_query(query_parameter):
     if query_parameter == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
+    elif query_parameter == "What is your name?":
+        return "KFC V50"
     else:
         return "Unknown"
