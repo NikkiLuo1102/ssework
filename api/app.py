@@ -40,10 +40,9 @@ def is_prime(i):
 
 def process_query(query_parameter):
     pattern_multiplied = r'What is \d+ multiplied by \d+\?$'
-    pattern_largest = r'Which of the following numbers is the largest\
-        : (\d+)(, \d+)*\?$'
+    largest = r'Which of the following numbers is the largest: (\d+)(, \d+)*\?$'
     pattern_plus = r'What is \d+ plus \d+\?$'
-    pattern_square_cubes = r'Which of the following numbers is both \
+    cubes = r'Which of the following numbers is both \
         a square and a cube: (\d+)(, \d+)*\?$'
     prime = r'Which of the following numbers are primes: (\d+)(, \d+)*\?$'
     pattern_minus = r'What is \d+ minus \d+\?$'
@@ -56,7 +55,7 @@ def process_query(query_parameter):
             res = res * int(i)
         return str(res)
 
-    elif re.match(pattern_largest, query_parameter):
+    elif re.match(largest, query_parameter):
         matches = re.findall(pattern_num, query_parameter)
         int_ls = [int(i) for i in matches]
         return str(max(int_ls))
@@ -68,7 +67,7 @@ def process_query(query_parameter):
             res = res + int(i)
         return str(res)
 
-    elif re.match(pattern_square_cubes, query_parameter):
+    elif re.match(cubes, query_parameter):
         matches = re.findall(pattern_num, query_parameter)
         res = ""
         for i in matches:

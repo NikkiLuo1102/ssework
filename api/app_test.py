@@ -19,8 +19,8 @@ def tests_multi():
 
 
 def tests_largest():
-    assert process_query("Which of the following numbers is the largest\
-                         : 32, 15, 44?") == "44"
+    str1 = "Which of the following numbers is the largest: 32, 15, 44?"
+    assert process_query(str1) == "44"
 
 
 def tests_plus():
@@ -28,8 +28,9 @@ def tests_plus():
 
 
 def tests_square_cube():
-    assert process_query("Which of the following numbers is both a\
-                         square and a cube: 78, 64, 16, 27, 729?") == "16, 729"
+    str1 = "Which of the following numbers is both \
+        a square and a cube: 78, 64, 16, 27, 729?"
+    assert process_query(str1) == "16, 729"
 
 
 def tests_prime():
