@@ -33,8 +33,8 @@ def tests_square_cube():
 
 
 def tests_prime():
-    assert process_query("Which of the following numbers are primes\
-                         : 7, 16, 23, 42, 41, 128?") == "7, 23, 41"
+    str1="Which of the following numbers are primes: 7, 16, 23, 46, 41, 128?"
+    assert process_query(str1) == "7, 23, 41"
 
 
 def tests_minus():
