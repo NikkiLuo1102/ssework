@@ -71,8 +71,8 @@ def process_query(query_parameter):
         res = ""
         for i in matches:
             i = int(i)
-            square_root = math.sqrt(i)
-            cube_root = i ** (1/3)
+            square_root = round(math.sqrt(i),5)
+            cube_root = round(i ** (1/3),5)
             if square_root.is_integer() and cube_root.is_integer():
                 res = res + str(i) + ", "
         return res[0:-2]
