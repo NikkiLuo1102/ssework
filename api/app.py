@@ -70,6 +70,7 @@ def process_query(query_parameter):
         matches = re.findall(pattern_num, query_parameter)
         res = ""
         for i in matches:
+            i=int(i)
             square_root = math.sqrt(i)
             cube_root = i ** (1/3)
             if square_root.is_integer() and cube_root.is_integer():
