@@ -30,7 +30,7 @@ def tests_plus():
 def tests_square_cube():
     str1 = "Which of the following numbers is both a square and a cube: "
     str2 = "78, 64, 16, 27, 729?"
-    assert process_query(str1+str2) == "16, 729"
+    assert process_query(str1+str2) == "64, 729"
 
 
 def tests_prime():
