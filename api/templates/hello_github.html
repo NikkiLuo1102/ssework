@@ -9,7 +9,7 @@
         {% for repo in repos %}
         <li>
             <a href="{{ repo.html_url }}">{{ repo.name }}</a>
-            (Last Updated: {{ repo.updated_at | date("medium") }})
+            (Last Updated: {{ repo.formatted_updated_at }})
         </li>
         {% endfor %}
     </ul>
