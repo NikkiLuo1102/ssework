@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import math
 import re
 import requests
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -24,15 +25,19 @@ def submit2():
     user = request.form.get("github_name")
     # 使用函数参数 username 构建 GitHub API 的 URL
     url = f"https://api.github.com/users/{user}/repos"
-
     try:
         response = requests.get(url)
-        response.raise_for_status()  # 检查是否有错误
         if response.status_code == 200:
             repos = response.json()  # 数据是 GitHub 仓库的列表
+            for repo in repos:
+                if repo.get("updated_at"):
+                    t1 = '%Y-%m-%dT%H:%M:%SZ'
+                    t2 = "%Y-%m-%d %H:%M:%S"
+                    tp = datetime.strptime(repo["updated_at"], t1).strftime(t2)
+                    repo["formatted_updated_at"] = tp
+            return render_template('repos.html', username=user, repos=repos)
     except requests.exceptions.RequestException as e:
-        return f"Error fetching data from GitHub: {e}"
-    return render_template('hello_github.html', username=user, repos=repos)
+        return f"Error: {str(e)}"
 
 
 @app.route("/query", methods=["GET"])
