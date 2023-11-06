@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 import math
 import re
 import requests
@@ -35,16 +35,15 @@ def submit2():
                     t2 = "%Y-%m-%d %H:%M:%S"
                     tp = datetime.strptime(repo["updated_at"], t1).strftime(t2)
                     repo["formatted_updated_at"] = tp
-            return render_template('hello_github.html', username=user, repos=repos)
+            return render_template('submit2.html', username=user, repos=repos)
     except requests.exceptions.RequestException as e:
         return f"Error: {str(e)}"
-    
-    
+
+
 @app.route('/search', methods=['POST'])
 def search():
     # 从请求中获取搜索关键词
     query = request.form.get('search_value')
-    
     # 使用GitHub API进行存储库搜索
     url = f'https://api.github.com/search/repositories?q={query}'
     headers = {
@@ -64,7 +63,7 @@ def search():
     except requests.exceptions.RequestException as e:
         # 返回一个错误消息
         return jsonify(error=f'Error: {str(e)}')
-        
+
 
 @app.route("/query", methods=["GET"])
 def get_query_parameter():
