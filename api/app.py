@@ -35,10 +35,36 @@ def submit2():
                     t2 = "%Y-%m-%d %H:%M:%S"
                     tp = datetime.strptime(repo["updated_at"], t1).strftime(t2)
                     repo["formatted_updated_at"] = tp
-            return render_template('repos.html', username=user, repos=repos)
+            return render_template('hello_github.html', username=user, repos=repos)
     except requests.exceptions.RequestException as e:
         return f"Error: {str(e)}"
+    
+    
+@app.route('/search', methods=['POST'])
+def search():
+    # 从请求中获取搜索关键词
+    query = request.form.get('search_value')
+    
+    # 使用GitHub API进行存储库搜索
+    url = f'https://api.github.com/search/repositories?q={query}'
+    headers = {
+        'Accept': 'application/vnd.github.v3+json'
+    }
 
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            # 提取有关存储库的信息
+            repos = data['items']
+            return render_template('search.html', query=query, repos=repos)
+        else:
+            # 返回一个错误消息
+            return jsonify(error='Error: Unable to fetch data from GitHub API')
+    except requests.exceptions.RequestException as e:
+        # 返回一个错误消息
+        return jsonify(error=f'Error: {str(e)}')
+        
 
 @app.route("/query", methods=["GET"])
 def get_query_parameter():

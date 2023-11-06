@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GitHub Repositories for {{ username }}</title>
+    <title>GitHub Repositories for {{ search_value }}</title>
 </head>
 <body>
-    <h1>GitHub Repositories for {{ username }}</h1>
+    <h1>GitHub Repositories for {{ search_value }}</h1>
     <ul>
         {% for repo in repos %}
         <li>
             <a href="{{ repo.html_url }}">{{ repo.name }}</a>
-            (Last Updated: {{ repo.formatted_updated_at }})
+            (Repository Size: {{ repo.size }}, Language: {{ repo.language }}, Last Updated: {{ repo.formatted_updated_at }})
+            <br> 
         </li>
         {% endfor %}
     </ul>
